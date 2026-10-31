@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: macos-15
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test with the installed Apple Audio Unit
+        run: swift test
+      - name: Build release
+        run: swift build -c release
+      - name: Exercise the CLI
+        run: python3 scripts/smoke.py "$(swift build -c release --show-bin-path)/sing"
