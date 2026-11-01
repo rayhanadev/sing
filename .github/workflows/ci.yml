@@ -14,6 +14,9 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+      - name: Verify extracted model files
+        working-directory: models/ausoundisolation/macos-27.2-26B5101f
+        run: shasum -a 256 -c SHA256SUMS
       - name: Test with the installed Apple Audio Unit
         run: swift test
       - name: Build release

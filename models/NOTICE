@@ -1,0 +1,7 @@
+Apple AUSoundIsolation model assets
+
+The original asset files listed in ausoundisolation/macos-27.2-26B5101f/manifest.json
+were extracted from Apple's macOS AudioDSP.component system bundle.
+
+These Apple assets are not covered by this repository's MIT license.
+This project does not grant a separate license to Apple's model assets.

@@ -7,7 +7,7 @@ sing vocals song.mp3 -o vocals.wav
 sing instrumental song.mp3 -o instrumental.wav
 ```
 
-`sing` wraps Apple's **AUSoundIsolation** Audio Unit. Audio stays on your computer. There are no model downloads, API keys, dependencies, or bundled weights.
+`sing` wraps Apple's **AUSoundIsolation** Audio Unit. Audio stays on your computer. Running the CLI requires no model downloads, API keys, or external dependencies. Extracted model graphs and weights are included in [`models/`](models/README.md).
 
 ## Install
 
@@ -81,7 +81,9 @@ On the Mac used to develop this tool, its resources are in:
 /System/Library/Components/AudioDSP.component/Contents/Resources/Tunings/Generic/AU/SoundIsolation/
 ```
 
-The current resources include `vi-nnet-voice.mil`, `vi-nnet-high-quality-voice.mil`, and their corresponding `weights/*.weight.bin` files. The CLI calls the installed Audio Unit, so it does not depend on those private file paths or load the weights itself.
+The repo includes a byte-for-byte [snapshot from macOS 27.2, build 26B5101f](models/ausoundisolation/macos-27.2-26B5101f): the standard and high-quality MIL graphs and weights, the legacy Espresso model, and their original configuration files. The 13 asset files total 9.70 MB. A manifest records their source and SHA-256 checksums; see the [model documentation](models/README.md) for the file map and verification command.
+
+The CLI calls the installed Audio Unit. It does not load the checked-in snapshot, so its behavior follows the host's macOS version. The extracted files are raw MIL/Espresso resources, not a standalone Core ML package.
 
 This project was prompted by [Noah's post about an on-device karaoke model](https://x.com/itsnoahd/status/2116325800513257633). **We have not established that AUSoundIsolation uses the same weights as Apple Music Sing.** It is a voice-isolation processor: results vary with the recording, vocals may leak into the backing track, and this is not a four-stem music separator. Model and parameter availability can vary by macOS version.
 
@@ -93,6 +95,6 @@ swift build -c release
 python3 scripts/smoke.py "$(swift build -c release --show-bin-path)/sing"
 ```
 
-The integration tests run the real Audio Unit on generated audio. They check sample alignment at different sample rates, stereo preservation, reconstruction from vocals plus instrumentals, very short files, and file-overwrite protection. The smoke test exercises the executable and its JSON interface. No audio fixtures or model files are committed.
+The integration tests run the real Audio Unit on generated audio. They check sample alignment at different sample rates, stereo preservation, reconstruction from vocals plus instrumentals, very short files, and file-overwrite protection. The smoke test exercises the executable and its JSON interface. CI also verifies the committed model checksums. Audio fixtures are generated during tests.
 
-MIT licensed CLI code. Apple's system components and model weights are not included and remain Apple's.
+The CLI code is MIT licensed. Extracted Apple assets are outside that license; see [`models/NOTICE`](models/NOTICE).

@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "source": {
+    "vendor": "Apple",
+    "component": "AUSoundIsolation",
+    "audio_unit": "aufx/vois/appl",
+    "macos_version": "27.2",
+    "macos_build": "26B5101f",
+    "directory": "/System/Library/Components/AudioDSP.component/Contents/Resources/Tunings/Generic/AU/SoundIsolation",
+    "extracted_date": "2026-10-31"
+  },
+  "total_asset_bytes": 9701581,
+  "models": [
+    {
+      "name": "high-quality-voice",
+      "graph": "vi-nnet-high-quality-voice.mil",
+      "weights": "weights/vi-nnet-high-quality-voice.weight.bin",
+      "configuration": "aufx-vois-appl-nnet-vi-high-quality-voice.plist",
+      "sample_rate": 32000,
+      "block_size": 1280,
+      "lookahead_size": 320,
+      "runtime": "MIL2BNNS",
+      "compute_engine": "CPU"
+    },
+    {
+      "name": "standard-voice",
+      "graph": "vi-nnet-voice.mil",
+      "weights": "weights/vi-nnet-voice.weight.bin",
+      "configuration": "aufx-vois-appl-nnet-vi-voice.plist",
+      "sample_rate": 24000,
+      "block_size": 480,
+      "lookahead_size": 320,
+      "runtime": "MIL2BNNS",
+      "compute_engine": "CPU"
+    },
+    {
+      "name": "legacy-voice-v0",
+      "graph": "vois-vi-v0-nnet.espresso.net",
+      "weights": "vois-vi-v0-nnet.espresso.weights",
+      "configuration": "aufx-vois-appl-nnet-vi-v0.plist",
+      "sample_rate": 24000,
+      "block_size": 480,
+      "lookahead_size": 320,
+      "runtime": "Espresso",
+      "compute_engine": "CPU",
+      "shape": "vois-vi-v0-nnet.espresso.shape"
+    }
+  ],
+  "files": [
+    {
+      "path": "aufx-vois-appl-dnos.aupreset",
+      "bytes": 648,
+      "sha256": "7633850881e98446a8de8dee0212bab014058084c201c7dfc95d35c3d4491519"
+    },
+    {
+      "path": "aufx-vois-appl-drev.aupreset",
+      "bytes": 481,
+      "sha256": "601a733e9ed903da1513b9bdf4f6e6ace7e618890ae60e37f0379e161c5f344b"
+    },
+    {
+      "path": "aufx-vois-appl-nnet-vi-high-quality-voice.plist",
+      "bytes": 562,
+      "sha256": "bd1d31ce4591e54f090b9854d052a743fafa113092c47f8c1e0bc49ed9a71dce"
+    },
+    {
+      "path": "aufx-vois-appl-nnet-vi-v0.plist",
+      "bytes": 6249,
+      "sha256": "361fb882c23823edd2bcf3236bc65eecd3ea47f2ebd21055114b915515cb4d3b"
+    },
+    {
+      "path": "aufx-vois-appl-nnet-vi-voice.plist",
+      "bytes": 521,
+      "sha256": "4099e80de4d62a3f23be6f918b26e19ffcfa4f3d3162be638140131e1f2d2685"
+    },
+    {
+      "path": "aufx-vois-appl-nnet.aupreset",
+      "bytes": 223,
+      "sha256": "81c3b92be1b8bb98e76cfd1581ea891407be79660a6de8f42a2a0c5d9c31c3d9"
+    },
+    {
+      "path": "vi-nnet-high-quality-voice.mil",
+      "bytes": 249356,
+      "sha256": "34140ea69f24d925d423ccdca259a8e9b67d455347a91395997aba7536aa9252"
+    },
+    {
+      "path": "vi-nnet-voice.mil",
+      "bytes": 391211,
+      "sha256": "a6ab9b97d47f5e30a8a4d6b9fcb4137c8174c18b5900a9edd8b5aa986b9bfc67"
+    },
+    {
+      "path": "vois-vi-v0-nnet.espresso.net",
+      "bytes": 434730,
+      "sha256": "1c7c1103ec52f99ebb282c7fb145b67deea90f32645986d227d72ce4527f399a"
+    },
+    {
+      "path": "vois-vi-v0-nnet.espresso.shape",
+      "bytes": 136960,
+      "sha256": "fea3663a27afac10ee6cef2fc604cb121cddd5e96c5fb0a26da83599137cbee0"
+    },
+    {
+      "path": "vois-vi-v0-nnet.espresso.weights",
+      "bytes": 2337920,
+      "sha256": "37ab279926aa0c5baff9920bba4b3ab7723f322ff4b093bb25b66b2eab8883a7"
+    },
+    {
+      "path": "weights/vi-nnet-high-quality-voice.weight.bin",
+      "bytes": 3896576,
+      "sha256": "32ebe995c8cb099e8d7704a457bfbba10a7426bab8b597ac9c1e81285cfb4c38"
+    },
+    {
+      "path": "weights/vi-nnet-voice.weight.bin",
+      "bytes": 2246144,
+      "sha256": "50a9ed5bcbd479fc83a0708f37a8bdba656a7f8470bd63e8bd847c3dd83be0a1"
+    }
+  ],
+  "notes": [
+    "Asset files are copied byte-for-byte from the system bundle, including original configuration paths.",
+    "These are raw MIL/Espresso resources, not a standalone MLModel package.",
+    "The CLI calls the installed system Audio Unit; these snapshots are included for inspection and experimentation.",
+    "Identity with Apple Music Sing weights has not been established."
+  ]
+}
